@@ -45,23 +45,23 @@ export default function Analytics() {
   useEffect(() => {
     const token = localStorage.getItem('auth_token');
 
-    axios.get('/api/analytics/top-products').then(r => setTopProducts(r.data));
-    axios.get('/api/analytics/top-categories').then(r => setTopCategories(r.data));
-    axios.get('/api/analytics/top-customers', { headers: { Authorization: `Bearer ${token}` } })
+    axios.get(`${apiBase}/api/analytics/top-products`).then(r => setTopProducts(r.data));
+    axios.get(`${apiBase}/api/analytics/top-categories`).then(r => setTopCategories(r.data));
+    axios.get(`${apiBase}/api/analytics/top-customers`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => setTopCustomers(r.data))
       .catch(() => null);
-    axios.get('/api/analytics/frequent-combos', {
+    axios.get(`${apiBase}/api/analytics/frequent-combos`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('auth_token')}` }
     })
       .then(r => setCombos(r.data))
       .catch(err => console.error('combos error', err.response || err));
-    axios.get('/api/analytics/recent-orders', {
+    axios.get(`${apiBase}/api/analytics/recent-orders`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('auth_token')}` }
     })
       .then(r => setRecentOrders(r.data))
       .catch(err => console.error('recent orders error', err));
 
-  }, []);
+  }, [apiBase]);
 
 
   // donut‑1: total sold per top product

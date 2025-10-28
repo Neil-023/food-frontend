@@ -20,7 +20,7 @@ export function CartProvider({ children }) {
   // Load cart from server
   const loadCart = async () => {
     try {
-      const res = await fetch(`${apiBase}/api/products`, {
+      const res = await fetch(`${apiBase}/api/cart`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Accept': 'application/json',

@@ -8,10 +8,11 @@ import './OrderHistory.css';
 function OrderHistory() {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
+  const apiBase = import.meta.env.VITE_API_URL?.replace(/\/$/, '');
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
+      const res = await fetch(`${apiBase}/api/orders`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
           'Accept': 'application/json',
@@ -26,7 +27,7 @@ function OrderHistory() {
       }
     };
     fetchOrders();
-  }, [navigate]);                                            // run once on mount :contentReference[oaicite:2]{index=2}
+  }, [navigate, apiBase]);                                            // run once on mount :contentReference[oaicite:2]{index=2}
 
   return (
     <div>

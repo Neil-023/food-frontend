@@ -83,7 +83,7 @@ function MainPage({ sellerId }) {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
+        const res = await fetch(`${apiBase}/api/products`);
         const data = await res.json();
         console.log('Raw API Response:', data);
         setFoodData(data);
@@ -94,7 +94,7 @@ function MainPage({ sellerId }) {
     }
 
     fetchProducts();
-  }, [sellerId]);
+  }, [sellerId, apiBase]);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -109,7 +109,7 @@ function MainPage({ sellerId }) {
     }
 
     fetchCategories();
-  }, []);
+  }, [apiBase]);
 
   useEffect(() => {
     if (availableCategories.length > 0) {

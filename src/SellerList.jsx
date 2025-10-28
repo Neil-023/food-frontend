@@ -18,7 +18,7 @@ export default function SellerList() {
   useEffect(() => {
     const fetchSellers = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
+        const res = await fetch(`${apiBase}/api/sellers`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('auth_token')}`,
             'Accept': 'application/json'
